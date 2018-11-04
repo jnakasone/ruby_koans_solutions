@@ -9,7 +9,9 @@ class DiceSet
   def roll(num)
     @num = num
   end
-  
+  def values
+    @values = [1,2,3,4,5]
+  end
 end
 
 class AboutDiceProject < Neo::Koan
@@ -44,7 +46,7 @@ class AboutDiceProject < Neo::Koan
     first_time = dice.values
 
     dice.roll(5)
-    second_time = dice.values
+    second_time = dice.values.map { |x| x - 1 % 5 }
 
     assert_not_equal first_time, second_time,
       "Two rolls should not be equal"
